@@ -549,16 +549,19 @@
     <h2 class="text-xl font-light">Network Data — Knowledge &amp; Information Contacts</h2>
   </div>
   <div class="section-card p-6 md:p-8 space-y-6">
-    <div class="p-3 rounded text-sm" style="background:#FFF7ED;border:1px solid var(--bhutan-orange);border-left:3px solid var(--bhutan-orange);">
-      <strong style="color:var(--bhutan-orange);">Note:</strong> Completion of this section is required. You will not be able to move to the next page unless all mandatory questions in this section are answered.
-    </div>
+
     <div class="p-4 rounded text-sm" style="background:var(--bhutan-warm);border:1px solid var(--bhutan-border);">
       <strong>Reminder:</strong> Write the full job title <em>and</em> organisation for each contact. Do not write "my boss" or "a colleague" — these cannot be used in network analysis.
     </div>
-    <p><span class="q-number">Q10</span> In the past 3 years, when you needed information, advice, or collaboration specifically related to your professional work in research or policy, which individuals did you contact most frequently?</p>
-    <p class="text-sm" style="color:var(--bhutan-mid);">Please provide details for up to 5 of your most important professional contacts. <span class="required-star">All fields are required.</span></p>
+    <p><span class="q-number">Q10</span> In the past 1 year, when you needed information, advice, or collaboration related to your work, which individual/s did you contact?</p>
+    <p class="text-sm mt-1" style="color:var(--bhutan-mid);"><strong>Note:</strong> List as many as you can name. In case you cannot recall any names to list out, please list any one or two reasons.</p>
 
     <div id="contacts-container" class="space-y-6"></div>
+    
+    <div class="mt-4">
+      <label class="block text-sm mb-2 font-semibold">If you cannot recall any names, please list one or two reasons why:</label>
+      <textarea id="q10_reasons" class="form-input" rows="3" placeholder="Write your reasons here..."></textarea>
+    </div>
 
     <div class="flex justify-between pt-4">
       <button class="btn-secondary" onclick="goToPage(2)">← Back</button>
@@ -575,22 +578,23 @@
   </div>
   <div class="section-card p-6 md:p-8 space-y-8">
 
-    <div class="p-3 rounded text-sm" style="background:#FFF7ED;border:1px solid var(--bhutan-orange);border-left:3px solid var(--bhutan-orange);">
-      <strong style="color:var(--bhutan-orange);">Note:</strong> Completion of this section is required. You will not be able to move to the next page unless all mandatory questions in this section are answered.
-    </div>
-
-    <!-- Section 5 -->
-    <div>
+<div>
       <div class="section-header mb-4">
         <h3 class="font-semibold"><span class="q-number">Q11</span> Section 5: Being Introduced to Others</h3>
       </div>
-      <p class="mb-4">In the past 3 years, were you ever introduced to someone from a different organisation by a third party?</p>
+      <p class="mb-2">In the past 1 year, were you ever introduced to someone from a different organization by a third party for a potential collaboration?</p>
+      <p class="text-sm mt-1 mb-4" style="color:var(--bhutan-mid);"><strong>Note:</strong> List as many as you can name. In case you cannot recall any names to list out, please list any one or two reasons.</p>
       <div class="flex gap-6 mb-6">
         <label class="flex items-center gap-3"><input type="radio" name="intro_yn" value="Yes" class="custom-radio" onchange="toggleIntroductions()"/><span>Yes</span></label>
         <label class="flex items-center gap-3"><input type="radio" name="intro_yn" value="No" class="custom-radio" onchange="toggleIntroductions()"/><span>No</span></label>
       </div>
 
       <div id="introductions-container" class="space-y-6" style="display:none;"></div>
+      
+      <div class="mt-4">
+        <label class="block text-sm mb-2 font-semibold">If you cannot recall any names, please list one or two reasons why:</label>
+        <textarea id="q11_reasons" class="form-input" rows="3" placeholder="Write your reasons here..."></textarea>
+      </div>
     </div>
 
     <!-- Section 6 -->
@@ -658,13 +662,11 @@
     <h2 class="text-xl font-light">Missing Connections</h2>
   </div>
   <div class="section-card p-6 md:p-8 space-y-6">
-    <div class="p-3 rounded text-sm" style="background:#FFF7ED;border:1px solid var(--bhutan-orange);border-left:3px solid var(--bhutan-orange);">
-      <strong style="color:var(--bhutan-orange);">Note:</strong> Completion of this section is required. You will not be able to move to the next page unless all mandatory questions in this section are answered.
-    </div>
-    <div class="section-header mb-4">
+<div class="section-header mb-4">
       <h3 class="font-semibold"><span class="q-number">Q13</span> Section 7: Contacts You Wish You Had</h3>
     </div>
     <p>Are there individuals or organisations you wish you had a professional connection with but currently do not?</p>
+    <p class="text-sm mt-1 mb-2" style="color:var(--bhutan-mid);"><strong>Note:</strong> List as many as you can name.</p>
     <div class="flex gap-6 mb-2">
       <label class="flex items-center gap-3"><input type="radio" name="missing_yn" class="custom-radio"/><span>Yes</span></label>
       <label class="flex items-center gap-3"><input type="radio" name="missing_yn" class="custom-radio"/><span>No</span></label>
@@ -1066,17 +1068,17 @@ const journals = [
 ];
 
 const contactFields = [
-  { label:"Mention or specify the position <span class='required-star'>*</span>", type:"text", placeholder:"e.g. Director of Curriculum, MoE" },
-  { label:"Organisation <span class='required-star'>*</span>", type:"text", placeholder:"e.g. Ministry of Education, Skills and Development" },
-  { label:"Department / Division / Unit <span class='required-star'>*</span>", type:"text", placeholder:"e.g. Curriculum and Professional Support Division" },
-  { label:"How often did you contact them? <span class='required-star'>*</span>", type:"select", options:["Weekly","Monthly","Few times a year","Once a year"] },
-  { label:"How important is this contact to your work? <span class='required-star'>*</span>", type:"select", options:["Extremely","Very","Moderately","Somewhat","Not very"] },
-  { label:"Nature of relationship <span class='required-star'>*</span>", type:"select", options:["Formal — official or institutional channel","Informal — personal or social connection","Committee — through a joint committee or working group","Introduced — connected through a third party","Former Colleague — previously worked together"] },
-  { label:"What did you exchange? <span class='required-star'>*</span>", type:"text", placeholder:"e.g. Research, Policy docs, Data, Advice…" },
-  { label:"Does this person contact you back? <span class='required-star'>*</span>", type:"select", options:["Yes, always","Yes, sometimes","Rarely","Never"] },
-  { label:"Would this person name you as one of their contacts? <span class='required-star'>*</span>", type:"select", options:["Yes","Probably","Unlikely","No"] },
+  { label:"Mention or specify the position", type:"text", placeholder:"e.g. Director of Curriculum, MoE" },
+  { label:"Organisation", type:"text", placeholder:"e.g. Ministry of Education, Skills and Development" },
+  { label:"Department / Division / Unit", type:"text", placeholder:"e.g. Curriculum and Professional Support Division" },
+  { label:"How often did you contact them?", type:"select", options:["Weekly","Monthly","Few times a year","Once a year"] },
+  { label:"How important is this contact to your work?", type:"select", options:["Extremely","Very","Moderately","Somewhat","Not very"] },
+  { label:"Nature of relationship, you approached this contact because of:", type:"select", options:["Formal — official or institutional channel","Informal — personal or social connection","Committee — through a joint committee or working group","Introduced — connected through a third party","Former Colleague — previously worked together"] },
+  { label:"What did you exchange?", type:"text", placeholder:"e.g. Research, Policy docs, Data, Advice…" },
+  { label:"Does this person contact you back?", type:"select", options:["Yes, always","Yes, sometimes","Rarely","Never"] },
+  { label:"Would this person name you as one of their contacts?", type:"select", options:["Yes","Probably","Unlikely","No"] },
 ];
-
+  
 const introFields = [
   { label:"Who introduced you?", placeholder:"Position and organisation of the introducer" },
   { label:"Who were you introduced to?", placeholder:"Position and organisation of the new contact" },
@@ -1160,10 +1162,10 @@ function buildContacts() {
     let html = `<p class="font-semibold mono text-sm" style="color:var(--bhutan-gold);">Contact ${c}</p>`;
     contactFields.forEach((f, fi) => {
       html += `<div><label class="block text-sm mb-1">${f.label}</label>`;
-      if (f.type === 'select') {
-        html += `<select class="form-input" required><option value="">— Select —</option>${f.options.map(o=>`<option>${o}</option>`).join('')}</select>`;
+    if (f.type === 'select') {
+        html += `<select class="form-input"><option value="">— Select —</option>${f.options.map(o=>`<option>${o}</option>`).join('')}</select>`;
       } else {
-        html += `<input type="text" class="form-input" placeholder="${f.placeholder}" required/>`;
+        html += `<input type="text" class="form-input" placeholder="${f.placeholder}"/>`;
       }
       html += `</div>`;
     });
